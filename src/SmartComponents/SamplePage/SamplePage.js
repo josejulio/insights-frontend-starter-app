@@ -33,7 +33,7 @@ class SamplePage extends Component {
                     <h1> Cards </h1>
                     <h1> Buttons </h1>
                     <Section type='button-group'>
-                        <Button variant='primary'> PF-Next Primary Button </Button>
+                        <Button variant='primary'> Im working with typescript </Button>
                         <Button variant='secondary'> PF-Next Secondary Button </Button>
                         <Button variant='tertiary'> PF-Next Tertiary Button </Button>
                         <Button variant='danger'> PF-Next Danger Button </Button>

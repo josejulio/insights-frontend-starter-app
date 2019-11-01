@@ -9,6 +9,8 @@ const localhost = (process.env.PLATFORM === 'linux') ? 'localhost' : 'host.docke
 module.exports = {
     routes: {
         '/apps/starter': { host: `https://${localhost}:8002` },
-        '/insights/starter': { host: `https://${localhost}:8002` }
+        '/insights/custom-policies': { host: `https://${localhost}:8002` },
+        '/beta/insights/custom-policies': { host: `https://${localhost}:8002` },
+        '/beta/config': { host: 'http://localhost:8889' }
     }
 };

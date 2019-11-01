@@ -1,11 +1,18 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import * as React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Routes } from './Routes';
 import './App.scss';
 
-class App extends Component {
+declare var insights: any;
+
+interface AppProps {
+    history: any;
+}
+
+class App extends React.PureComponent<AppProps> {
+    appNav: any;
+    buildNav: any;
 
     componentDidMount () {
         insights.chrome.init();
@@ -14,7 +21,7 @@ class App extends Component {
         insights.chrome.identifyApp('insights');
         insights.chrome.navigation(buildNavigation());
 
-        this.appNav = insights.chrome.on('APP_NAVIGATION', event => this.props.history.push(`/${event.navId}`));
+        this.appNav = insights.chrome.on('APP_NAVIGATION', (event: any) => this.props.history.push(`/${event.navId}`));
         this.buildNav = this.props.history.listen(() => insights.chrome.navigation(buildNavigation()));
     }
 
@@ -25,14 +32,10 @@ class App extends Component {
 
     render () {
         return (
-            <Routes childProps={ this.props } />
+            <Routes /*childProps={ this.props }*/ />
         );
     }
 }
-
-App.propTypes = {
-    history: PropTypes.object
-};
 
 /**
  * withRouter: https://reacttraining.com/react-router/web/api/withRouter
@@ -49,6 +52,9 @@ function buildNavigation () {
     }, {
         title: 'Rules',
         id: 'rules'
+    }, {
+        title: 'Custom Policies',
+        id: 'custom-policies'
     }].map(item => ({
         ...item,
         active: item.id === currentPath
